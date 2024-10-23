@@ -1,1 +1,2 @@
-web: python movie-by-you.py
+web: gunicorn movie-by-you:app
+

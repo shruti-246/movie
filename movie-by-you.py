@@ -4,6 +4,11 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
+# Add a route for the root URL
+@app.route('/')
+def home():
+    return "Welcome to the Movie API! Use /api/movie?title={your_movie_title} to get movie information."
+
 @app.route('/api/movie', methods=['GET'])
 def get_movie():
     title = request.args.get('title')  # Get the movie title from the request parameters
@@ -30,5 +35,4 @@ if __name__ == '__main__':
     import os
     port = int(os.environ.get("PORT", 5000))  # Get the port from the environment variable, defaulting to 5000
     app.run(host='0.0.0.0', port=port)  # Bind to all interfaces and the specified port
-
 
