@@ -8,13 +8,13 @@ app = Flask(__name__)
 def get_movie():
     title = request.args.get('title')  # Get the movie title from the request parameters
     api_key = os.getenv('OMDB_API_KEY')  # Retrieve API key from environment variables
-    
+
     if not title:
         return jsonify({'error': 'Title parameter is required'}), 400
 
     # Construct the request URL for the OMDb API
     url = f'http://www.omdbapi.com/?t={title}&apikey={api_key}'
-    
+
     # Make a request to the OMDb API
     response = requests.get(url)
     if response.status_code == 200:
@@ -27,5 +27,8 @@ def get_movie():
         return jsonify({'error': 'Failed to fetch movie data'}), response.status_code
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Get the port from the environment variable, defaulting to 5000
+    app.run(host='0.0.0.0', port=port)  # Bind to all interfaces and the specified port
+
 
