@@ -32,7 +32,5 @@ def get_movie():
         return jsonify({'error': 'Failed to fetch movie data'}), response.status_code
 
 if __name__ == '__main__':
-    import os
-    port = int(os.environ.get("PORT", 5000))  # Get the port from the environment variable, defaulting to 5000
-    app.run(host='0.0.0.0', port=port)  # Bind to all interfaces and the specified port
+    app.run(debug=True)
 
