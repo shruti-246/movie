@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Movie Recommendation Results</h1>
+    </header>
+    <main>
+        {% if error %}
+            <h2>Error: {{ error }}</h2>
+        {% else %}
+            <h2>{{ movie.Title }} ({{ movie.Year }})</h2>
+            <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+            <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+            <p><strong>Rating:</strong> {{ movie.imdbRating }}</p>
+            <img src="{{ movie.Poster }}" alt="{{ movie.Title }} poster">
+        {% endif %}
+        <a href="/">Search Again</a>
+    </main>
+</body>
+</html>
